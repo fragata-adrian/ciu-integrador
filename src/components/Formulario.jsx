@@ -1,8 +1,8 @@
 import React, { Fragment, useState } from 'react';
+import { Form, Col, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Form, Col, Button, Alert } from 'react-bootstrap';
 
-const Formulario = ({ consultarApi }) => {
+const Formulario = ({ consultarApi, setError, setMensajeError }) => {
 
   // Creo el state para almacenar los datos de la consulta
 
@@ -24,10 +24,6 @@ const Formulario = ({ consultarApi }) => {
     })
   }
 
-  // State para el error
-
-  const [error, setError] = useState(false);
-
   // Creo la funcion para enviar el formulario y validar los datos
 
   const submitForm = e => {
@@ -41,6 +37,7 @@ const Formulario = ({ consultarApi }) => {
     if (ciudad.trim() === '' || pronostico.trim() === '') {
       console.log("Completa todos los campos!");
       setError(true);
+      setMensajeError("Completa todos los campos!");
       return;
     }
 
@@ -53,7 +50,7 @@ const Formulario = ({ consultarApi }) => {
 
     consultarApi(ciudad);
 
-    
+
     // Limpio el Form
 
     setConsulta({
@@ -101,17 +98,6 @@ const Formulario = ({ consultarApi }) => {
           </Button>
 
           <Col></Col>
-        </Form.Row>
-
-        <Form.Row>
-          <Col>
-            {error
-              ? <Alert variant='danger'>
-                  Completa todos los campos!
-                </Alert>
-              : null
-            }
-          </Col>
         </Form.Row>
       </Form>
     </Fragment>
