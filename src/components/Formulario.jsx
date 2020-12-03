@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { useState } from 'react';
 import { Form, Col, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -7,19 +7,17 @@ const Formulario = ({ consultarApi, setError, setMensajeError }) => {
   // Creo el state para almacenar los datos de la consulta
 
   const [consulta, setConsulta] = useState({
-    ciudad: '',
-    pronostico: ''
+    ciudad: ''
   });
 
   // Extraigo los valores del state de la consulta
 
-  const { ciudad, pronostico } = consulta;
+  const { ciudad } = consulta;
 
   // HandleChange para ir leyendo lo que el usuario escribe
 
   const handleChange = e => {
     setConsulta({
-      ...consulta,
       [e.target.name] : e.target.value
     })
   }
@@ -34,10 +32,10 @@ const Formulario = ({ consultarApi, setError, setMensajeError }) => {
 
     // Valido el ingreso
 
-    if (ciudad.trim() === '' || pronostico.trim() === '') {
-      console.log("Completa todos los campos!");
+    if (ciudad.trim() === '') {
+      console.log("Por favor ingresa el nombre de una ciudad.");
       setError(true);
-      setMensajeError("Completa todos los campos!");
+      setMensajeError("Por favor ingresa el nombre de una ciudad.");
       return;
     }
 
@@ -55,42 +53,30 @@ const Formulario = ({ consultarApi, setError, setMensajeError }) => {
 
     setConsulta({
       ciudad: '',
-      pronostico: ''
     });
   }
 
   return (
-    <Fragment>
+    <div style={
+      {
+        backgroundColor: 'rgba(255, 255, 255, 0.301)',
+        borderRadius: '10px'
+      }
+    }>
       <Form onSubmit={submitForm}>
         <Form.Row>
           <Col></Col>
 
-          <Col >
+          <Col>
             <Form.Control 
               type="text" 
-              placeholder="Ingrese una ciudad" 
+              placeholder="Ingresa el nombre de una ciudad" 
               name='ciudad'
               value= {ciudad}
               onChange={handleChange}
             />
           </Col>
 
-          <Col>
-            <Form.Control
-              as="select"
-              name='pronostico'
-              className="mr-sm-2"
-              id="inlineFormCustomSelect"
-              value={pronostico}
-              onChange={handleChange}
-              custom
-            >
-              <option value="0">Tipo de pronóstico...</option>
-              <option value="1">Actual</option>
-              <option value="2">Extendido</option>
-            </Form.Control>
-          </Col>
-          
           <Button 
             variant="primary"
             type= "submit"
@@ -100,7 +86,8 @@ const Formulario = ({ consultarApi, setError, setMensajeError }) => {
           <Col></Col>
         </Form.Row>
       </Form>
-    </Fragment>
+    </div>
+    
   );
 }
 

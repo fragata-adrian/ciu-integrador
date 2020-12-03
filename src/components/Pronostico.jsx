@@ -12,12 +12,14 @@ const Pronostico = ({ clima }) => {
   
   return (
     <Fragment>
-      <h4>Tiempo en {clima.name}</h4>
-      <Image src={imagen} rounded />
-      <p>{(temp - 273.15).toFixed(1)}°</p>
-      <p>{description}</p>
-      <p>min {(temp_min - 273.15).toFixed(1)}° - max {(temp_max - 273.15).toFixed(1)}°</p>
-      <p>Humedad {humidity}%</p>
+      <div className='Pronostico'>
+        <h3>Tiempo en {clima.name}</h3>
+        <Image src={imagen} rounded />
+        <p>{(temp - 273.15).toFixed(1)}°</p>
+        <p>{description.toUpperCase()}</p>
+        <p>MIN {(temp_min - 273.15).toFixed(1)}° - MAX {(temp_max - 273.15).toFixed(1)}°</p>
+        <p>HUMEDAD {humidity}%</p>
+      </div>
     </Fragment>
   );
 }

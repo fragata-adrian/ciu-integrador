@@ -27,10 +27,13 @@ function App() {
   // Funcion para validar la respuesta de la API
 
   const validarRes = (cod) => {
-    if (cod === 200) {
+    let codInt = parseInt(cod)
+    
+    if (codInt === 200) {
       setError(false);
       setConsulta(true);
-    } else if (cod === 404) {
+    }
+    if (codInt === 404) {
       setConsulta(false);
       setError(true);
       setMensajeError("La ciudad ingresada es invalida!");
@@ -64,16 +67,8 @@ function App() {
       <div className="App">
         <h1 className="Tittle">Pronóstico del Tiempo en tu Ciudad</h1>
         <br/>
-        <Container>  
-          < Row>
-            <Col>
-              {consulta
-                ? null
-                : <p>Ingrese una ciudad para realizar la consulta</p>
-              }
-            </Col>
-          </Row>
 
+        <Container>
           <Row>
             <Col >
               <Formulario 

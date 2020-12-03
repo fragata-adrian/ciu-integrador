@@ -1,6 +1,28 @@
+body {
+  background-image: url('https://images4.alphacoders.com/876/thumb-1920-876898.jpg');
+}
+
+.Pronostico {
+  background-color: rgba(255, 255, 255, 0.301);
+  width: 500px;
+  margin-right: auto;
+  margin-left: auto;
+  border-radius: 10px;
+}
+
+.Pronostico p {
+  font-family: 'Oswald', sans-serif;
+  font-size: 20px;
+}
+
+.Pronostico h3 {
+  font-family: 'Oswald', sans-serif;
+}
+
 .Tittle {
   text-align: center;
   font-family: 'Anton', sans-serif;
+  color: white;
 }
 
 .App {
